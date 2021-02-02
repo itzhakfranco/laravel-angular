@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6 mt-5">
         <button (click)="showUserForm = !showUserForm" class="btn btn-dark">
-            Add User
+            {{ !showUserForm ? "Add User" : "Hide Form" }}
         </button>
     </div>
 </div>
