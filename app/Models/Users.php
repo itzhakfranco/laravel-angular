@@ -14,7 +14,7 @@ class Users extends Model
     {
 
         $user = new self();
-        $user->name = $request['name']
+        $user->name = $request['name'];
         $user->email = $request['email'];
         $user->website = $request['website'];
         $user->phone = $request['phone'];

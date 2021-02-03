@@ -34,7 +34,7 @@ export class UserFormComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    addUser({ value, valid }: { value: any; valid: any }) {
+    addUser({ value, valid }: { value: User; valid: any }) {
         if (valid) {
             this.userService.addUser(value).subscribe((user: any) => {
                 this.newUser.emit(user);
