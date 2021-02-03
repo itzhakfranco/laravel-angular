@@ -24,7 +24,6 @@ export class UserFormComponent implements OnInit {
     @Output() updatedUser: EventEmitter<User> = new EventEmitter();
     @Input() isEdit: boolean = true;
     @Input() currentUser: User = {
-        id: 1,
         name: "",
         email: "",
         phone: "",
@@ -34,21 +33,20 @@ export class UserFormComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    addUser({ value, valid }: { value: User; valid: any }) {
+    addUser({ value, valid }: { value: User; valid: any }): void {
         if (valid) {
-            this.userService.addUser(value).subscribe((user: any) => {
+            this.userService.addUser(value).subscribe((user: User) => {
                 this.newUser.emit(user);
             });
             this.form.reset();
         }
     }
-    updateUser() {
+    updateUser(): void {
         this.userService.updateUser(this.currentUser).subscribe((user) => {
             this.isEdit = false;
             this.updatedUser.emit(user);
             this.showUserForm = false;
             this.currentUser = {
-                id: 1,
                 name: "",
                 email: "",
                 phone: "",

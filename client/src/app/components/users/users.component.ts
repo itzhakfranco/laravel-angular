@@ -14,7 +14,6 @@ export class UsersComponent implements OnInit {
 
     users: Array<User> = [];
     currentUser: User = {
-        id: 1,
         name: "",
         email: "",
         website: "",
@@ -44,7 +43,6 @@ export class UsersComponent implements OnInit {
                 this.users.unshift(user);
                 this.isEdit = false;
                 this.currentUser = {
-                    id: 1,
                     name: "",
                     email: "",
                     website: "",
@@ -54,11 +52,11 @@ export class UsersComponent implements OnInit {
         });
     }
 
-    removeUser(user: User) {
+    removeUser(id: any) {
         if (confirm("Are you sure?")) {
-            this.userService.removePost(user.id).subscribe(() => {
+            this.userService.removePost(id).subscribe(() => {
                 this.users.forEach((cur, index) => {
-                    if (user.id === cur.id) {
+                    if (id === cur.id) {
                         this.users.splice(index, 1);
                     }
                 });
