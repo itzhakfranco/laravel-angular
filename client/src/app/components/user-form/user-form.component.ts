@@ -17,8 +17,6 @@ import { User } from "../../models/User";
     styleUrls: ["./user-form.component.css"],
 })
 export class UserFormComponent implements OnInit {
-    constructor(private userService: UsersService) {}
-
     @ViewChild("userForm") form: any;
     @Output() newUser: EventEmitter<User> = new EventEmitter();
     @Output() updatedUser: EventEmitter<User> = new EventEmitter();
@@ -32,12 +30,13 @@ export class UserFormComponent implements OnInit {
     showUserForm: boolean = true;
 
     ngOnInit(): void {}
+    constructor(private userService: UsersService) {}
 
     addUser({ value, valid }: { value: User; valid: any }): void {
         if (valid) {
-            this.userService.addUser(value).subscribe((user: User) => {
-                this.newUser.emit(user);
-            });
+            this.userService
+                .addUser(value)
+                .subscribe((user: User) => this.newUser.emit(user));
             this.form.reset();
         }
     }

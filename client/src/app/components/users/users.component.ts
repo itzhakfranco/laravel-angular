@@ -10,8 +10,6 @@ import { UsersService } from "../../services/users.service";
     styleUrls: ["./users.component.css"],
 })
 export class UsersComponent implements OnInit {
-    constructor(private userService: UsersService) {}
-
     users: Array<User> = [];
     currentUser: User = {
         name: "",
@@ -21,10 +19,11 @@ export class UsersComponent implements OnInit {
     };
     isEdit: boolean = false;
 
+    constructor(private userService: UsersService) {}
     ngOnInit(): void {
-        this.userService.getUsers().subscribe((users: any) => {
-            this.users = users;
-        });
+        this.userService
+            .getUsers()
+            .subscribe((users: any) => (this.users = users));
     }
 
     onNewUser(user: User) {
